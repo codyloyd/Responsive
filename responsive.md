@@ -34,7 +34,7 @@ If you simply remove the width rule, most block-level html elements will expand 
 
 ![width](./width.gif)
 
-#### OK BUT I DON"T WANT IT TO BE FULL WIDTH.
+#### OK BUT I DON'T WANT IT TO BE FULL WIDTH.
 
 I know.... but rather than using a percentage to define the width of the element, use a static margin.  It'll still be responsive, but will look much nicer at most screen-sizes.  If you _want_ the thing to have a smaller margin so it will fit on smaller screens, that's a perfect time to use a breakpoint.
 
