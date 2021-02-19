@@ -2,6 +2,11 @@
 I've ecountered a couple misconceptions lately about what it means to style and design "responsive" layouts, and I thought the clearest way to communicate this stuff would be to document it rather than just snipe at people in PR comments and instant messages.  So hereeee we goooo.
 
 ## Responsive?
+OK when we say "responsive" what we mean is that the thing we're styling should look nice on the range of viewports and orientations that we support. In most cases that means things should look fine everything from ultrawide monitors to the smallest popular smartphones in use (the iphone 5 is probably the smallest phone that is still getting a fair amount of use.. it's viewport is 320px wide)
+
+What we **do NOT** mean is that the views should look _identical_ on every screen size.  In fact that would actually be problematic in a few ways.  For example, the proportions of header/footer/content that looks nice on a phone are going to be quite different than what people expect to see on a normal desktop monitor. Text that is perfectly readable on a normal monitor, would have to be scaled down to fit within the same layout on a tiny screen, probably enough that it would be unreadable.
+
+Generally it's intended that there will be some things that change between screensizes. Some text will overflow. Margins and paddings might need to be adjusted etc. This is all fine.
 
 ## Percentages
 You probably don't want to use percentages.
@@ -75,3 +80,74 @@ body {
 ```
 
 ![max-width](./max-width.gif)
+
+## Viewport Units
+
+Viewport (`vh`/`vw`) units carry a lot of the same downsides as percentages. In fact, in many cases they behave pretty much the same. However, unfortunately, they come with an additional downside: Viewport units can be buggy on smartphones.  This is likely to improve a bit as phone technology improves, but the way that phone browsers (specifically iOS browsers) interpret the 'viewport' is not the way most people expect or desire.
+
+The most significant issue is the toolbar at the bottom.
+
+![safari](./safari.png)
+
+It appears and disappears as you scroll around and tap on the webpage/browser, and is _not_ taken into account when viewport units are calculated.
+
+Probably the most common thing we're trying to do when using vh/vw is to create a webapp that behaves somewhat like a native app, is full-height in the browser with our own header and footer. This toolbar will cover up anything  you put on the bottom of the screen which can be a real problem.
+
+Consider the following: 
+```html
+<div class="full-screen">
+  <div class="header"></div>
+  <div class="content">
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eligendi, voluptatibus odio? Obcaecati neque nesciunt officiis nulla iusto veritatis, quas mollitia provident, ullam optio possimus ducimus perspiciatis magnam ab et excepturi.
+  </div>
+  <div class="footer"></div>
+</div>
+```
+```css
+* {box-sizing: border-box;}
+body {margin: 0;}
+
+.full-screen {
+  background: pink;
+  font-size: 32px;
+  height: 100vh;
+}
+
+.content {
+  padding: 16px;
+  // header and footer are 50px each
+  height: calc(100% - 100px);
+}
+
+.header {
+  height: 50px;
+  background: blue;
+}
+
+.footer {
+  height: 50px;
+  background: green;
+}
+```
+
+![viewport](viewportheight.png)
+
+In this example, which looks and works fine on most desktop browsers, (and android browsers too) the footer would likely spend a lot of time covered up by the iOS safari toolbar, which is no good if you are intending to put important information or buttons down there.
+
+### Solutions
+
+Unfortunately the solution here is less elegant than the 100vh, but it does have the advantage of _working as intended_. The solution is to use `position: fixed`. The screenshot from my browser would look the same here, so I'll just paste in the code that's been changed.  We're not done with this example yet either, so I'll wait to post the whole code until we're done.
+
+```css
+.full-screen {
+  background: pink;
+  font-size: 32px;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+```
+
+`position: fixed` with `top`, `left`, `right`, and `bottom` set to `0` is not _technically_ the same effect as `height: 100vh`, but if the desire is to create a full-screen app-like experience then it's closer to what you _actually_ want.
