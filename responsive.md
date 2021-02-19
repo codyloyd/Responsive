@@ -151,3 +151,26 @@ Unfortunately the solution here is less elegant than the 100vh, but it does have
 ```
 
 `position: fixed` with `top`, `left`, `right`, and `bottom` set to `0` is not _technically_ the same effect as `height: 100vh`, but if the desire is to create a full-screen app-like experience then it's closer to what you _actually_ want.
+
+## Calc
+OK listen.  Calc is awesome, and I'm not about to tell you to never use it.... but the example I've just shown you has another problem here:
+
+```css
+.content {
+  padding: 16px;
+  // header and footer are 50px each
+  height: calc(100% - 100px);
+}
+```
+
+This section is the middle of our full-screen view. The part with all the text. We set the height like this to push the footer to the bottom of the screen.  Without it, our app would look like this: 
+
+![footer](./footer.png)
+
+However, doing this calculation requires that our header and footer _always_ add up to exactly 100px, which is kind of hard to guarantee. If we're creating a multi-use layout component that lets us stick in different header/footer combinations or if we are always using the same header, but sticking in different content (titles, subtitles, buttons, whatever) it can be hard to guarantee that nothing is ever going to overflow and expand the header. Sometimes the design just changes!
+
+A better solution here is to use flexbox (with `flex-direction: column`) to make sure our design is.... _flexible_.
+
+![flexxxxx](./flexible.png)
+
+Flexbox roooooocks.
