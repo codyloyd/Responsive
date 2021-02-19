@@ -1,5 +1,5 @@
 # Let's talk "Responsive"
-I've ecountered a couple misconceptions lately about what it means to style and design "responsive" layouts, and I thought the clearest way to communicate this stuff would be to document it rather than just snipe at people in PR comments and instant messages.  So hereeee we goooo.
+I've encountered a couple misconceptions lately about what it means to style and design "responsive" layouts, and I thought the clearest way to communicate this stuff would be to document it rather than just snipe at people in PR comments and instant messages.  So hereeee we goooo.
 
 ## Responsive?
 OK when we say "responsive" what we mean is that the thing we're styling should look nice on the range of viewports and orientations that we support. In most cases that means things should look fine everything from ultrawide monitors to the smallest popular smartphones in use (the iphone 5 is probably the smallest phone that is still getting a fair amount of use.. it's viewport is 320px wide)
