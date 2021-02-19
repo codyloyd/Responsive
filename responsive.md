@@ -174,3 +174,50 @@ A better solution here is to use flexbox (with `flex-direction: column`) to make
 ![flexxxxx](./flexible.gif)
 
 Flexbox roooooocks.
+
+Here's the full code for this finished layout
+`html`
+```html
+<div class="full-screen">
+  <div class="header"></div>
+  <div class="content">
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eligendi, voluptatibus odio? Obcaecati neque nesciunt officiis nulla iusto veritatis, quas mollitia provident, ullam optio possimus ducimus perspiciatis magnam ab et excepturi.
+  </div>
+  <div class="footer"></div>
+</div>
+```
+
+`css`
+```css
+* {box-sizing: border-box;}
+body {margin: 0;}
+
+.full-screen {
+  background: pink;
+  font-size: 32px;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.content {
+  padding: 16px;
+  flex-grow: 1;
+}
+
+.header {
+  height: 50px;
+  background: blue;
+}
+
+.footer {
+  height: 50px;
+  background: green;
+}
+```
+
+And [here's a link to the codepen](https://codepen.io/codyloyd/pen/qBqXbLN?editors=1100)
