@@ -171,6 +171,6 @@ However, doing this calculation requires that our header and footer _always_ add
 
 A better solution here is to use flexbox (with `flex-direction: column`) to make sure our design is.... _flexible_.
 
-![flexxxxx](./flexible.png)
+![flexxxxx](./flexible.gif)
 
 Flexbox roooooocks.
