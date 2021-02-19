@@ -175,7 +175,8 @@ A better solution here is to use flexbox (with `flex-direction: column`) to make
 
 Flexbox roooooocks.
 
-Here's the full code for this finished layout
+Here's the full code for this finished layout.
+
 `html`
 ```html
 <div class="full-screen">
